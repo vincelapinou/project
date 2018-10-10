@@ -174,11 +174,13 @@ function MaterialRGB(r,g,b) {
     return new THREE.MeshLambertMaterial( {color:c} );
 }
 
-function createBar(position, dimension, rotation, color, name){
-	const BoxGeometry = new THREE.BoxGeometry(1,6,0.2);
-    const Box6 = new THREE.Mesh(BoxGeometry6,MaterialRGB(1,1,1) );
-    Box6.castShadow = true;
-	Box6.name = "rectangle6";
-	Box6.position.set(0,-3,1);
-    sceneGraph.add( Box6 );
+function createBar(position, dimension, rotation, colorRGB, name){ 
+	//color, dimension, position are Vector3, name is a string, rotation is a float 
+	const BoxGeometry = new THREE.BoxGeometry(dimension.x,dimension.y,dimension.z);
+    	const Box = new THREE.Mesh(BoxGeometry,MaterialRGB(colorRGB.x,colorRGB.y,colorRGB.z) );
+    	Box.castShadow = true;
+	Box.name = name;
+	Box.position.set(position.x,position.y,position.z);
+	Box.rotateZ(rotation);
+    	sceneGraph.add( Box );
 }
