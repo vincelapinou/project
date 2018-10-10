@@ -34,13 +34,8 @@ function init3DObjects(sceneGraph) {
 	cylinder2.name = "cylinder2";
     sceneGraph.add( cylinder2 );
 	
-	const BoxGeometry1 = new THREE.BoxGeometry(1,20,0.2);
-    const Box1 = new THREE.Mesh(BoxGeometry1,MaterialRGB(1,1,1) );
-    Box1.castShadow = true;
-	Box1.name = "rectangle1";
-	Box1.position.set(-Math.sqrt(425)/2,2.5,1);
-	Box1.rotateZ(+0.25+Math.PI/2);
-    sceneGraph.add( Box1 );
+	createBar(Vector3(-Math.sqrt(425)/2,2.5,1),Vector3(1,20,0.2),+0.25+Math.PI/2,MaterialRGB(1,1,1),"rectangle1");
+
 	
 	const BoxGeometry2 = new THREE.BoxGeometry(1,20,0.2);
     const Box2 = new THREE.Mesh(BoxGeometry2,MaterialRGB(1,1,1) );
