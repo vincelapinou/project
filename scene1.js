@@ -23,7 +23,7 @@ function main() {
 function init3DObjects(sceneGraph) {
 
    const cylinderGeometry1 = primitive.Cylinder(Vector3(0,0,0),Vector3(0,0,1),1);
-    const cylinder1 = new THREE.Mesh( cylinderGeometry1,MaterialRGB(1,1,1) );
+    const cylinder1 = new THREE.Mesh( cylinderGeometry1,Vector3(1,1,1) );
     cylinder1.castShadow = true;
 	cylinder1.name = "cylinder1";
     sceneGraph.add( cylinder1 );
@@ -34,7 +34,7 @@ function init3DObjects(sceneGraph) {
 	cylinder2.name = "cylinder2";
     sceneGraph.add( cylinder2 );
 	
-	createBar(Vector3(-Math.sqrt(425)/2,2.5,1),Vector3(1,20,0.2),+0.25+Math.PI/2,MaterialRGB(1,1,1),"rectangle1");
+	createBar(Vector3(-Math.sqrt(425)/2,2.5,1),Vector3(1,20,0.2),+0.25+Math.PI/2,Vector3(1,1,1),"rectangle1");
 
 	
 	const BoxGeometry2 = new THREE.BoxGeometry(1,20,0.2);
