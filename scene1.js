@@ -21,45 +21,21 @@ function main() {
 
 // Initialise les objets composant la scène 3D
 function init3DObjects(sceneGraph) {
-
-   const cylinderGeometry1 = primitive.Cylinder(Vector3(0,0,0),Vector3(0,0,1),1);
-    const cylinder1 = new THREE.Mesh( cylinderGeometry1,Vector3(1,1,1) );
-    cylinder1.castShadow = true;
+	const cylinderGeometry1 = primitive.Cylinder(Vector3(0,0,0),Vector3(0,0,1),1);
+	const cylinder1 = new THREE.Mesh( cylinderGeometry1,Vector3(1,1,1) );
+	cylinder1.castShadow = true;
 	cylinder1.name = "cylinder1";
-    sceneGraph.add( cylinder1 );
+	sceneGraph.add( cylinder1 );
 	
 	const cylinderGeometry2 = primitive.Cylinder(Vector3(-10,0,0),Vector3(-10,0,1),1);
-    const cylinder2 = new THREE.Mesh( cylinderGeometry2,MaterialRGB(1,1,1) );
-    cylinder2.castShadow = true;
+	const cylinder2 = new THREE.Mesh( cylinderGeometry2,MaterialRGB(1,1,1) );
+	cylinder2.castShadow = true;
 	cylinder2.name = "cylinder2";
-    sceneGraph.add( cylinder2 );
+	sceneGraph.add( cylinder2 );
 	
-	createBar(Vector3(-Math.sqrt(425)/2,2.5,1),Vector3(1,20,0.2),+0.25+Math.PI/2,Vector3(1,1,1),"rectangle1");
-
+	creerGrandeBarre(sceneGraph,"barre1",Vector3(10,0,0), Math.PI/2);
 	
-	const BoxGeometry2 = new THREE.BoxGeometry(1,20,0.2);
-    const Box2 = new THREE.Mesh(BoxGeometry2,MaterialRGB(1,1,1) );
-    Box2.castShadow = true;
-	Box2.name = "rectangle1";
-	Box2.position.set(Math.sqrt(425)/2,2.5,1);
-	Box2.rotateZ(-0.25-Math.PI/2);
-    sceneGraph.add( Box2 );
-	
-	
-	const BoxGeometry5 = new THREE.BoxGeometry(1,6,0.2);
-    const Box5 = new THREE.Mesh(BoxGeometry5,MaterialRGB(1,1,1) );
-    Box5.castShadow = true;
-	Box5.name = "rectangle5";
-	Box5.position.set(0,3,1);
-    sceneGraph.add( Box5 );
-	
-	const BoxGeometry6 = new THREE.BoxGeometry(1,6,0.2);
-    const Box6 = new THREE.Mesh(BoxGeometry6,MaterialRGB(1,1,1) );
-    Box6.castShadow = true;
-	Box6.name = "rectangle6";
-	Box6.position.set(0,-3,1);
-    sceneGraph.add( Box6 );
-	
+	// creation des axes	
 	
 	const cylinderGeometryx = primitive.Cylinder(Vector3(0,0,0),Vector3(10,0,0),0.1);
     const cylinderx = new THREE.Mesh( cylinderGeometryx,MaterialRGB(1,0,0) );
@@ -169,13 +145,12 @@ function MaterialRGB(r,g,b) {
     return new THREE.MeshLambertMaterial( {color:c} );
 }
 
-function createBar(position, dimension, rotation, colorRGB, name){ 
-	//color, dimension, position are Vector3, name is a string, rotation is a float 
-	const BoxGeometry = new THREE.BoxGeometry(dimension.x,dimension.y,dimension.z);
-    	const Box = new THREE.Mesh(BoxGeometry,MaterialRGB(colorRGB.x,colorRGB.y,colorRGB.z) );
-    	Box.castShadow = true;
-	Box.name = name;
-	Box.position.set(position.x,position.y,position.z);
-	Box.rotateZ(rotation);
-    	sceneGraph.add( Box );
+function creerGrandeBarre(sceneGraph,n,position,angle){ // permet de créer une des grandes barres du parallélogramme, de nom 'n', de milieu 'position' et pivotée d'un angle 'angle'
+	const BGeometry = new THREE.BoxGeometry(1,20,0.2);
+	const barre = new THREE.Mesh(BGeometry,MaterialRGB(1,1,1) );
+	barre.position.set(position.x,position.y,position.z);
+	barre.rotateZ(angle);
+	barre.castShadow = true;
+	barre.name = n;
+	sceneGraph.add(barre);
 }
