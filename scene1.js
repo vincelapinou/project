@@ -33,7 +33,10 @@ function init3DObjects(sceneGraph) {
 	cylinder2.name = "cylinder2";
 	sceneGraph.add( cylinder2 );
 	
-	creerGrandeBarre(sceneGraph,"barre1",Vector3(10,0,0), Math.PI/2);
+	creerGrandeBarre(sceneGraph,"barre1",Vector3(-Math.sqrt(425)/2,2.5,1), +0.25+Math.PI/2);
+	creerGrandeBarre(sceneGraph,"barre2",Vector3(-Math.sqrt(425)/2,-2.5,1), -0.25-Math.PI/2);
+	creerGrandeBarre(sceneGraph,"barre3",Vector3(Math.sqrt(425)/2,2.5,1), -0.25-Math.PI/2);
+	creerGrandeBarre(sceneGraph,"barre4",Vector3(Math.sqrt(425)/2,-2.5,1), 0.25+Math.PI/2);
 	
 	// creation des axes	
 	
