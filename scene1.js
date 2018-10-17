@@ -22,7 +22,7 @@ function main() {
 // Initialise les objets composant la scène 3D
 function init3DObjects(sceneGraph) {
 	const cylinderGeometry1 = primitive.Cylinder(Vector3(0,0,0),Vector3(0,0,1),1);
-	const cylinder1 = new THREE.Mesh( cylinderGeometry1,Vector3(1,1,1) );
+	const cylinder1 = new THREE.Mesh( cylinderGeometry1,MaterialRGB(1,1,1) );
 	cylinder1.castShadow = true;
 	cylinder1.name = "cylinder1";
 	sceneGraph.add( cylinder1 );
