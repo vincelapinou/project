@@ -33,14 +33,10 @@ function init3DObjects(sceneGraph) {
 	cylinder2.name = "cylinder2";
 	sceneGraph.add( cylinder2 );
 	
-	const barre1 = creerGrandeBarre("barre1",Vector3(-Math.sqrt(425)/2,2.5,1), +0.25+Math.PI/2);
-	const barre2 = creerGrandeBarre("barre2",Vector3(-Math.sqrt(425)/2,-2.5,1), -0.25-Math.PI/2);
-	const barre3 = creerGrandeBarre("barre3",Vector3(Math.sqrt(425)/2,2.5,1), -0.25-Math.PI/2);
-	const barre4 = creerGrandeBarre("barre4",Vector3(Math.sqrt(425)/2,-2.5,1), 0.25+Math.PI/2);
+	const barre1 = creerBarre(20, "barre1",Vector3(-Math.sqrt(425)/2,2.5,1), +0.25+Math.PI/2);
+	const barre2 = creerBarre(20, "barre2",Vector3(-5,0,0), -2*(0.25+Math.PI/2));
 	sceneGraph.add(barre1);
 	barre1.add(barre2);
-	barre2.add(barre3);
-	barre3.add(barre4);
 	
 	// creation des axes	
 	
@@ -73,6 +69,9 @@ function render( sceneThreeJs ) {
 function animate(sceneThreeJs, time) {
 
     const t = time/1000;//time in second
+	
+	const barre1 = sceneThreeJs.sceneGraph.getObjectByName("barre1");
+	barre1.rotateZ(0.03);
 	
 	
     render(sceneThreeJs);
@@ -152,8 +151,8 @@ function MaterialRGB(r,g,b) {
     return new THREE.MeshLambertMaterial( {color:c} );
 }
 
-function creerGrandeBarre(n,position,angle){ // permet de créer une des grandes barres du parallélogramme, de nom 'n', de milieu 'position' et pivotée d'un angle 'angle'
-	const BGeometry = new THREE.BoxGeometry(1,20,0.2);
+function creerBarre(l, n,position,angle){ // permet de créer une des grandes barres du parallélogramme, de longueur l, de nom 'n', de milieu 'position' et pivotée d'un angle 'angle'
+	const BGeometry = new THREE.BoxGeometry(1,l,0.2);
 	const barre = new THREE.Mesh(BGeometry,MaterialRGB(1,1,1) );
 	barre.position.set(position.x,position.y,position.z);
 	barre.rotateZ(angle);
