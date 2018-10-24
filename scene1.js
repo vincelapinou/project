@@ -83,7 +83,6 @@ function animate(sceneThreeJs, time) {
     const t = time/1000;//time in second
 	
 	const barreDirectrice = sceneThreeJs.sceneGraph.getObjectByName("barreDirectrice");
-	barreDirectrice.rotateZ(0.03);
 	
 	
     render(sceneThreeJs);
