@@ -26,3 +26,9 @@ function getCoord(theta, a, d) { // dans le cas du point d'intersection du cercl
   const pointQ = [x1x2[1],yDroiteBD(x1x2[1])];
   return [pointB, pointQ];
 }
+main();
+
+function main() {//test
+  console.log(getCoord(1,4,3));
+  
+ }
