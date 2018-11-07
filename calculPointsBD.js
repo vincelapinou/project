@@ -11,7 +11,7 @@ function trinome(a,b,c){// a,b,c sont les coefficients du trinome a resoudre, re
 }
 function yDroiteBD(x, theta, a, d ) { // renvoie l'ordonnée de la droite BD quand on lui donne l abscisse
 //theta a d parametres du parallelogramme etudie
-return -(MATH.sin(theta)/(1+MATH.cos(theta))*x+1/2(-d+a(1+MATH.cos(theta));
+return -(MATH.sin(theta)/(1+MATH.cos(theta))*x+0.5*(-d+a(1+MATH.cos(theta));
 }
 function getCoord(theta, a, d) { // dans le cas du point d'intersection du cercle avec la droite QB du parallelogramme de peaucelier
 // x, theta a et d sont les parametres du parallelogramme
