@@ -35,6 +35,9 @@ function init3DObjects(sceneGraph) {
 	sceneGraph.add(B);
 	sceneGraph.add(D);
 	
+	const AI = creerBarre(5, "AI",Vector3(0,10,0),0);
+	sceneGraph.add(AI);
+	
 	
 	var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 	var geometry = new THREE.Geometry();
@@ -73,7 +76,7 @@ function animate(sceneThreeJs, time) {
 
     const t = time/1000;//time in second
 	
-	const angle = Math.cos(t);
+	const angle = 1.3*Math.cos(t);
 	
 	
 	const A = sceneThreeJs.sceneGraph.getObjectByName("A");
@@ -81,6 +84,19 @@ function animate(sceneThreeJs, time) {
 	
 	const C = sceneThreeJs.sceneGraph.getObjectByName("C");
 	C.position.set(-12*Math.sin(angle)/(1+Math.cos(angle)),-12,0);
+	
+	const AI = sceneThreeJs.sceneGraph.getObjectByName("AI");
+	AI.translateY(-2.5);
+	AI.rotateZ(0.01);
+	AI.translateY(2.5);
+	
+	const pointsBD = getCoord(angle, 5, 12, Math.sqrt(158));
+	const B = sceneThreeJs.sceneGraph.getObjectByName("B");
+	B.position.set(pointsBD[1], yDroiteBD(pointsBD[1], angle, 5, 12),0)
+	
+	const D = sceneThreeJs.sceneGraph.getObjectByName("D");
+	D.position.set(pointsBD[0], yDroiteBD(pointsBD[0], angle, 5, 12),0)
+
 	
     render(sceneThreeJs);
 }
@@ -110,7 +126,7 @@ function initEmptyScene(sceneThreeJs) {
 
     sceneThreeJs.sceneGraph = new THREE.Scene( );
 
-    sceneThreeJs.camera = sceneInit.createCamera(-10,8,10);
+    sceneThreeJs.camera = sceneInit.createCamera(-10,8,30);
     sceneInit.insertAmbientLight(sceneThreeJs.sceneGraph);
     sceneInit.insertLight(sceneThreeJs.sceneGraph,Vector3(0,0,20));
 
@@ -166,4 +182,45 @@ function creerSphere(n,position){
 	sphere.castShadow = true;
 	sphere.name = n;
 	return sphere;
+}
+
+function creerBarre(l, n ,position,angle){
+	const BGeometry = new THREE.BoxGeometry(1,l,0.2);
+	const barre = new THREE.Mesh(BGeometry,MaterialRGB(1,1,1) );
+	barre.rotateZ(angle);
+	barre.position.set(position.x+l/2*Math.sin(angle),position.y-l/2*Math.cos(angle),position.z);
+	barre.castShadow = true;
+	barre.name = n;
+	return barre;
+}
+
+function trinome(a,b,c){// a,b,c sont les coefficients du trinome a resoudre, renvoie les 2 racines réelles si elles existent 
+  	const delta = b*b-4*a*c;
+  	var x1 = (-b+Math.sqrt(delta))/(2*a);
+	var x2 = (-b-Math.sqrt(delta))/(2*a);
+	return [x2,x1];
+}
+
+
+function yDroiteBD(x, theta, a, d ) { // renvoie l'ordonnée de la droite BD quand on lui donne l abscisse
+  	//theta a d parametres du parallelogramme etudie
+	
+	const A = -Math.sin(theta)/(1+Math.cos(theta));
+	const B = (a+a*Math.cos(theta)-d)/2 - A/2*(a*Math.sin(theta)- d*Math.sin(theta)/(1+Math.cos(theta)));
+	
+  	return A*x + B;
+}
+                                                    
+function getCoord(theta, a, d, L) { // dans le cas du point d'intersection du cercle avec la droite QB du parallelogramme de peaucelier
+  	// x, theta a et d sont les parametres du parallelogramme
+    // definition des cstes
+    const A = -Math.sin(theta)/(1+Math.cos(theta));
+    const B = (a+a*Math.cos(theta)-d)/2 - A/2*(a*Math.sin(theta)- d*Math.sin(theta)/(1+Math.cos(theta)));
+    const C = a*Math.sin(theta);
+	const D = a+a*Math.cos(theta) - B;
+    var x1x2 = trinome(1+A*A,
+    -2*C-2*A*D,
+    C*C+D*D-L*L
+    );
+  	return x1x2;
 }
