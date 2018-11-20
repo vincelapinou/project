@@ -22,12 +22,12 @@ function main() {
 // Initialise les objets composant la scène 3D
 function init3DObjects(sceneGraph) {
 
-	const A = creerSphere("A",Vector3(0,10,0));
-	const I = creerSphere("I",Vector3(0,5,0));
-	const O = creerSphere("O",Vector3(0,0,0));
-	const C = creerSphere("C",Vector3(0,-12,0));
-	const B = creerSphere("B",Vector3(Math.sqrt(37),-1,0));
-	const D = creerSphere("D",Vector3(-Math.sqrt(37),-1,0));
+	const A = createSphere("A",Vector3(0,10,0));
+	const I = createSphere("I",Vector3(0,5,0));
+	const O = createSphere("O",Vector3(0,0,0));
+	const C = createSphere("C",Vector3(0,-12,0));
+	const B = createSphere("B",Vector3(Math.sqrt(37),-1,0));
+	const D = createSphere("D",Vector3(-Math.sqrt(37),-1,0));
 	sceneGraph.add(A);
 	sceneGraph.add(O);
 	sceneGraph.add(I);
@@ -35,7 +35,7 @@ function init3DObjects(sceneGraph) {
 	sceneGraph.add(B);
 	sceneGraph.add(D);
 	
-	const AI = creerBarre(5, "AI",Vector3(0,10,0),0);
+	const AI = createBar(5, "AI",Vector3(0,10,0),0);
 	sceneGraph.add(AI);
 	
 	
@@ -80,23 +80,25 @@ function animate(sceneThreeJs, time) {
 	
 	
 	const A = sceneThreeJs.sceneGraph.getObjectByName("A");
-	A.position.set(5*Math.sin(angle),5+5*Math.cos(angle),0);
+	const coorda = coordA(5,angle);
+	A.position.set(coorda[0],coorda[1],coorda[2]);
 	
 	const C = sceneThreeJs.sceneGraph.getObjectByName("C");
-	C.position.set(-12*Math.sin(angle)/(1+Math.cos(angle)),-12,0);
+	const coordc = coordC(12,angle);
+	C.position.set(coordc[0],coordc[1],coordc[2]);
 	
 	const AI = sceneThreeJs.sceneGraph.getObjectByName("AI");
 	AI.translateY(-2.5);
 	AI.rotateZ(0.01);
 	AI.translateY(2.5);
 	
-	const pointsBD = getCoord(angle, 5, 12, Math.sqrt(158));
 	const B = sceneThreeJs.sceneGraph.getObjectByName("B");
-	B.position.set(pointsBD[1], yDroiteBD(pointsBD[1], angle, 5, 12),0)
+	const coordb = coordB(5,12,Math.sqrt(158),angle);
+	B.position.set(coordb[0],coordb[1],coordb[2]);
 	
 	const D = sceneThreeJs.sceneGraph.getObjectByName("D");
-	D.position.set(pointsBD[0], yDroiteBD(pointsBD[0], angle, 5, 12),0)
-
+	const coordd = coordD(5,12,Math.sqrt(158),angle);
+	D.position.set(coordd[0],coordd[1],coordd[2]);
 	
     render(sceneThreeJs);
 }
@@ -173,54 +175,4 @@ function Vector3(x,y,z) {
 function MaterialRGB(r,g,b) {
     const c = new THREE.Color(r,g,b);
     return new THREE.MeshLambertMaterial( {color:c} );
-}
-
-function creerSphere(n,position){
-	const SGeometry = new THREE.SphereGeometry(1,32,32);
-	const sphere = new THREE.Mesh(SGeometry,MaterialRGB(1,0,0) );
-	sphere.position.set(position.x, position.y,position.z);
-	sphere.castShadow = true;
-	sphere.name = n;
-	return sphere;
-}
-
-function creerBarre(l, n ,position,angle){
-	const BGeometry = new THREE.BoxGeometry(1,l,0.2);
-	const barre = new THREE.Mesh(BGeometry,MaterialRGB(1,1,1) );
-	barre.rotateZ(angle);
-	barre.position.set(position.x+l/2*Math.sin(angle),position.y-l/2*Math.cos(angle),position.z);
-	barre.castShadow = true;
-	barre.name = n;
-	return barre;
-}
-
-function trinome(a,b,c){// a,b,c sont les coefficients du trinome a resoudre, renvoie les 2 racines réelles si elles existent 
-  	const delta = b*b-4*a*c;
-  	var x1 = (-b+Math.sqrt(delta))/(2*a);
-	var x2 = (-b-Math.sqrt(delta))/(2*a);
-	return [x2,x1];
-}
-
-
-function yDroiteBD(x, theta, a, d ) { // renvoie l'ordonnée de la droite BD quand on lui donne l abscisse
-  	//theta a d parametres du parallelogramme etudie
-	
-	const A = -Math.sin(theta)/(1+Math.cos(theta));
-	const B = (a+a*Math.cos(theta)-d)/2 - A/2*(a*Math.sin(theta)- d*Math.sin(theta)/(1+Math.cos(theta)));
-	
-  	return A*x + B;
-}
-                                                    
-function getCoord(theta, a, d, L) { // dans le cas du point d'intersection du cercle avec la droite QB du parallelogramme de peaucelier
-  	// x, theta a et d sont les parametres du parallelogramme
-    // definition des cstes
-    const A = -Math.sin(theta)/(1+Math.cos(theta));
-    const B = (a+a*Math.cos(theta)-d)/2 - A/2*(a*Math.sin(theta)- d*Math.sin(theta)/(1+Math.cos(theta)));
-    const C = a*Math.sin(theta);
-	const D = a+a*Math.cos(theta) - B;
-    var x1x2 = trinome(1+A*A,
-    -2*C-2*A*D,
-    C*C+D*D-L*L
-    );
-  	return x1x2;
 }
