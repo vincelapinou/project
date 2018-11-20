@@ -36,7 +36,19 @@ function init3DObjects(sceneGraph) {
 	sceneGraph.add(D);
 	
 	const AI = createBar(5, "AI",Vector3(0,10,0),0);
+	const DA = createBar(Math.sqrt(158), "DA",Vector3(0,10,0),0);
+	const AB = createBar(Math.sqrt(158), "AB",Vector3(0,10,0),0);
+	const BC = createBar(Math.sqrt(158), "BC",Vector3(0,10,0),0);
+	const CD = createBar(Math.sqrt(158), "CD",Vector3(0,10,0),0);
+	const OB = createBar(Math.sqrt(37), "OB",Vector3(0,10,0),0);
+	const OD = createBar(Math.sqrt(37), "OD",Vector3(0,10,0),0);
 	sceneGraph.add(AI);
+	sceneGraph.add(DA);
+	sceneGraph.add(AB);
+	sceneGraph.add(BC);
+	sceneGraph.add(CD);
+	sceneGraph.add(OB);
+	sceneGraph.add(OD);
 	
 	
 	var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
@@ -87,13 +99,6 @@ function animate(sceneThreeJs, time) {
 	const coordc = coordC(12,angle);
 	C.position.set(coordc[0],coordc[1],coordc[2]);
 	
-	const AI = sceneThreeJs.sceneGraph.getObjectByName("AI");
-	barBetween(coorda,coordc,AI);
-	
-	//AI.translateY(-2.5);
-	//AI.rotation.z=-angle;
-	//AI.translateY(2.5);
-	
 	const B = sceneThreeJs.sceneGraph.getObjectByName("B");
 	const coordb = coordB(5,12,Math.sqrt(158),angle);
 	B.position.set(coordb[0],coordb[1],coordb[2]);
@@ -101,6 +106,30 @@ function animate(sceneThreeJs, time) {
 	const D = sceneThreeJs.sceneGraph.getObjectByName("D");
 	const coordd = coordD(5,12,Math.sqrt(158),angle);
 	D.position.set(coordd[0],coordd[1],coordd[2]);
+	
+	const coordi=[0,5,0];
+	const coordo=[0,0,0];
+	
+	const AI = sceneThreeJs.sceneGraph.getObjectByName("AI");
+	barBetween(coordi,coorda,AI);
+	
+	const DA = sceneThreeJs.sceneGraph.getObjectByName("DA");
+	barBetween(coorda,coordd,DA);
+	
+	const AB = sceneThreeJs.sceneGraph.getObjectByName("AB");
+	barBetween(coorda,coordb,AB);
+	
+	const BC = sceneThreeJs.sceneGraph.getObjectByName("BC");
+	barBetween(coordb,coordc,BC);
+	
+	const CD = sceneThreeJs.sceneGraph.getObjectByName("CD");
+	barBetween(coordc,coordd,CD);
+	
+	const OB = sceneThreeJs.sceneGraph.getObjectByName("OB");
+	barBetween(coordo,coordb,OB);
+	
+	const OD = sceneThreeJs.sceneGraph.getObjectByName("OD");
+	barBetween(coordo,coordd,OD);
 	
     render(sceneThreeJs);
 }
