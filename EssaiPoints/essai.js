@@ -88,9 +88,11 @@ function animate(sceneThreeJs, time) {
 	C.position.set(coordc[0],coordc[1],coordc[2]);
 	
 	const AI = sceneThreeJs.sceneGraph.getObjectByName("AI");
-	AI.translateY(-2.5);
-	AI.rotateZ(0.01);
-	AI.translateY(2.5);
+	barBetween(coorda,coordc,AI);
+	
+	//AI.translateY(-2.5);
+	//AI.rotation.z=-angle;
+	//AI.translateY(2.5);
 	
 	const B = sceneThreeJs.sceneGraph.getObjectByName("B");
 	const coordb = coordB(5,12,Math.sqrt(158),angle);
