@@ -166,8 +166,6 @@ function initEmptyScene(sceneThreeJs) {
     sceneThreeJs.renderer = sceneInit.createRenderer();
     sceneInit.insertRenderInHtml(sceneThreeJs.renderer.domElement);
 
-    sceneThreeJs.controls = new THREE.OrbitControls( sceneThreeJs.camera );
-
     const onResizeFunction = function(event) { onResize(sceneThreeJs); };
     window.addEventListener('resize', onResizeFunction );
 }
