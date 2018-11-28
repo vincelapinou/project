@@ -17,6 +17,7 @@ function main() {
 
 
     animationLoop(sceneThreeJs);
+	interaction(sceneThreeJs);
 }
 
 // Initialise les objets composant la scène 3D
