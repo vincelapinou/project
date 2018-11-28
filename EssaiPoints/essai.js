@@ -18,6 +18,7 @@ function main() {
 
     animationLoop(sceneThreeJs);
 	interaction(sceneThreeJs);
+
 }
 
 // Initialise les objets composant la scène 3D
@@ -88,8 +89,10 @@ function render( sceneThreeJs ) {
 function animate(sceneThreeJs, time) {
 
     const t = time/1000;//time in second
+	
     render(sceneThreeJs);
 }
+
 
 
 
@@ -102,12 +105,15 @@ function initEmptyScene(sceneThreeJs) {
 
     sceneThreeJs.sceneGraph = new THREE.Scene( );
 
-    sceneThreeJs.camera = sceneInit.createCamera(-10,8,30);
+    sceneThreeJs.camera = sceneInit.createCamera(0,8,30);
+	sceneThreeJs.camera.lookAt(0,0,0);
     sceneInit.insertAmbientLight(sceneThreeJs.sceneGraph);
     sceneInit.insertLight(sceneThreeJs.sceneGraph,Vector3(0,0,20));
 
     sceneThreeJs.renderer = sceneInit.createRenderer();
     sceneInit.insertRenderInHtml(sceneThreeJs.renderer.domElement);
+
+   // sceneThreeJs.controls = new THREE.OrbitControls( sceneThreeJs.camera );
 
     const onResizeFunction = function(event) { onResize(sceneThreeJs); };
     window.addEventListener('resize', onResizeFunction );
@@ -148,3 +154,5 @@ function MaterialRGB(r,g,b) {
     const c = new THREE.Color(r,g,b);
     return new THREE.MeshLambertMaterial( {color:c} );
 }
+
+
