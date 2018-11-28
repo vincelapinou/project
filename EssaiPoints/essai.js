@@ -88,66 +88,8 @@ function render( sceneThreeJs ) {
 function animate(sceneThreeJs, time) {
 
     const t = time/1000;//time in second
-	
-	const angle = 1.3*Math.cos(t);
-	
-	
-	const A = sceneThreeJs.sceneGraph.getObjectByName("A");
-	const coorda = coordA(5,angle);
-	A.position.set(coorda[0],coorda[1],coorda[2]);
-	
-	const C = sceneThreeJs.sceneGraph.getObjectByName("C");
-	const coordc = coordC(12,angle);
-	C.position.set(coordc[0],coordc[1],coordc[2]);
-	
-	const B = sceneThreeJs.sceneGraph.getObjectByName("B");
-	const coordb = coordB(5,12,Math.sqrt(158),angle);
-	B.position.set(coordb[0],coordb[1],coordb[2]);
-	
-	const D = sceneThreeJs.sceneGraph.getObjectByName("D");
-	const coordd = coordD(5,12,Math.sqrt(158),angle);
-	D.position.set(coordd[0],coordd[1],coordd[2]);
-	
-	const coordi=[0,5,0];
-	const coordo=[0,0,0];
-	
-	const AI = sceneThreeJs.sceneGraph.getObjectByName("AI");
-	barBetween(coordi,coorda,AI);
-	
-	const DA = sceneThreeJs.sceneGraph.getObjectByName("DA");
-	barBetween(coorda,coordd,DA);
-	
-	const AB = sceneThreeJs.sceneGraph.getObjectByName("AB");
-	barBetween(coorda,coordb,AB);
-	
-	const BC = sceneThreeJs.sceneGraph.getObjectByName("BC");
-	barBetween(coordb,coordc,BC);
-	
-	const CD = sceneThreeJs.sceneGraph.getObjectByName("CD");
-	barBetween(coordc,coordd,CD);
-	
-	const OB = sceneThreeJs.sceneGraph.getObjectByName("OB");
-	barBetween(coordo,coordb,OB);
-	
-	const OD = sceneThreeJs.sceneGraph.getObjectByName("OD");
-	barBetween(coordo,coordd,OD);
-	
     render(sceneThreeJs);
 }
-
-
-function RotationBetweenTwoAxes(v1,v2) {
-    const v1n = v1.clone().normalize();
-    const v2n = v2.clone().normalize();
-
-    const axis = v1n.clone().cross(v2n).normalize();
-    const angle = Math.acos( v1n.dot(v2n) );
-
-    return new THREE.Matrix4().makeRotationAxis(axis,angle);
-}
-
-
-
 
 
 
