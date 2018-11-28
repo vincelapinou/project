@@ -1,12 +1,13 @@
 "use strict";
 
-function createSphere(n,position){ // creer une sphere rouge dont les coordonnées seront position
-	const SGeometry = new THREE.SphereGeometry(1,32,32);
-	const sphere = new THREE.Mesh(SGeometry,MaterialRGB(1,0,0) );
-	sphere.position.set(position.x, position.y,position.z);
-	sphere.castShadow = true;
-	sphere.name = n;
-	return sphere;
+function createCylinder(n,position){ // creer une sphere rouge dont les coordonnées seront position
+	const CGeometry = new THREE.CylinderGeometry(0.6,0.6,0.8,32);
+	const cylinder = new THREE.Mesh(CGeometry,MaterialRGB(1,0,0) );
+	cylinder.rotateX(Math.PI/2);
+	cylinder.position.set(position.x, position.y,position.z);
+	cylinder.castShadow = true;
+	cylinder.name = n;
+	return cylinder;
 }
 
 function createBar(l, n ,position,angle){

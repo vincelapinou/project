@@ -24,12 +24,12 @@ function main() {
 // Initialise les objets composant la scène 3D
 function init3DObjects(sceneGraph) {
 
-	const A = createSphere("A",Vector3(0,10,0));
-	const I = createSphere("I",Vector3(0,5,0));
-	const O = createSphere("O",Vector3(0,0,0));
-	const C = createSphere("C",Vector3(0,-12,0));
-	const B = createSphere("B",Vector3(Math.sqrt(37),-1,0));
-	const D = createSphere("D",Vector3(-Math.sqrt(37),-1,0));
+	const A = createCylinder("A",Vector3(0,10,0));
+	const I = createCylinder("I",Vector3(0,5,0));
+	const O = createCylinder("O",Vector3(0,0,0));
+	const C = createCylinder("C",Vector3(0,-12,0));
+	const B = createCylinder("B",Vector3(Math.sqrt(37),-1,0));
+	const D = createCylinder("D",Vector3(-Math.sqrt(37),-1,0));
 	sceneGraph.add(A);
 	sceneGraph.add(O);
 	sceneGraph.add(I);
@@ -51,6 +51,36 @@ function init3DObjects(sceneGraph) {
 	sceneGraph.add(CD);
 	sceneGraph.add(OB);
 	sceneGraph.add(OD);
+	
+	const PGeometry = new THREE.CubeGeometry(20,26,1);
+	const planche = new THREE.Mesh(PGeometry,MaterialRGB(1,0,0) );
+	planche.position.set(0, 0,-0.8);
+	sceneGraph.add(planche);
+	
+	
+	//Initialisation du parallélogramme
+	const coorda = coordA(5,0);
+	A.position.set(coorda[0],coorda[1],coorda[2]);
+
+	const coordc = coordC(12,0);
+	C.position.set(coordc[0],coordc[1],coordc[2]);
+
+	const coordb = coordB(5,12,Math.sqrt(158),0);
+	B.position.set(coordb[0],coordb[1],coordb[2]);
+
+	const coordd = coordD(5,12,Math.sqrt(158),0);
+	D.position.set(coordd[0],coordd[1],coordd[2]);
+
+	const coordi=[0,5,0];
+	const coordo=[0,0,0];
+
+	barBetween(coordi,coorda,AI);
+	barBetween(coorda,coordd,DA);
+	barBetween(coorda,coordb,AB);
+	barBetween(coordb,coordc,BC);
+	barBetween(coordc,coordd,CD);
+	barBetween(coordo,coordb,OB);
+	barBetween(coordo,coordd,OD);
 	
 	
 	var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
