@@ -5,32 +5,35 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title> EssaiDefile </title>
-		<link rel="stylesheet" href="page3.css">
+		<title> Le parallélogramme de Peaucellier </title>
+		<link rel="stylesheet" href="page2.css">
+		<script src="quizz2.js" defer></script>
+		
 
 	</head>
 
 	<body>
+		
+		
+	<iframe id="peaucellier" src="peaucellier.html">
+	</iframe> 
 	
-	<div id="Titre">Pourquoi le parallélogramme de Peaucellier ?</div>
+	<iframe id="watt" src="peaucellier.html">
+	</iframe> 
 	
-	<div id="ContainerTexte">
-	<div id="Texte1">
-	Au XIXe siècle, la Révolution industrielle apporte aux scientifiques tout un lot de questions. L’une d’entre elles, étroitement liée à l’invention de la machine à vapeur, concerne la transformation d’un mouvement rectiligne (celui d’un piston par exemple) en mouvement circulaire (celui d’un balancier) et réciproquement. James Watt invente ce que l’on appellera le parallélogramme de Watt, système à trois barres permettant d’obtenir un mouvement quasi rectiligne à partir d’un mouvement circulaire.
-	</div>
-	
-	<div id ="Texte2">
-	Les mathématiciens s’emparent alors du problème : peut-on obtenir un tracé parfaitement rectiligne à partir d’un mouvement circulaire ? C’est la création d’une « géométrie articulée ». Elle cherche à résoudre le problème de la « règle », l’un des deux outils de base de la géométrie euclidienne, avec le compas. En effet, la règle est par définition rectiligne, mais comment obtenir cette règle ? Les mathématiciens s’appliqueront à déterminer comment à partir d’un système mécanique de pivots on peut obtenir une ligne parfaitement droite.
- </div>	
-	
-	<div id ="Texte3">
-	En 1868, le parallélogramme de Charles Peaucellier répond à ce problème, avec un système à 7 branches, mais il passe relativement inaperçu, jusqu’à ce qu’un scientifique lituanien, Lipman Lipkin soit récompensé pour avoir « découvert » le même dispositif trois ans plus tard.
-</div>
+		
+		<div id = "ContainerQuizz">
+		<div id= "ContainerTexte">
+			<div id="quiz"></div>
+			</br>
+			<div id="results"></div>
+			<button id="submit">Correction</button>
+			
+			<button id="next" onClick="location.href='page3.html'">Suivant</button>
+			
+		</div>
+		</div>
+		
+	</body>
 
-	<div id="Texte4">
-	En 1874, Harry Hart invente un système similaire encore plus performant puisqu’il ne nécessite plus que 5 barres.
-	</div>
-	
-	</div>
-	</body>	
 </html>

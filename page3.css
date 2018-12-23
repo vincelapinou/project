@@ -1,0 +1,129 @@
+@keyframes example {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+body{
+	background-color:white;
+	background-image:url(background.png);
+	background-repeat: repeat;
+}
+
+
+iframe{
+	width:40%;
+	height:50%;
+	position:absolute;
+	left:0%;
+	top:25%;
+	border:none;
+	outline:none;
+	opacity:0;
+  animation-name: example;
+  animation-duration: 20s;
+  animation-fill-mode: forwards;
+}
+
+#Texte1 {
+  opacity:0;
+  animation-name: example;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+  margin:2%;
+  font-size : 20px;
+}
+
+#Texte2 {
+  opacity:0;
+  animation-name: example;
+  animation-duration: 8s;
+  animation-delay:6s;
+  animation-fill-mode: forwards;
+  margin:2%;
+  font-size : 20px;
+}
+
+#Texte3 {
+  opacity:0;
+  animation-name: example;
+  animation-duration: 8s;
+  animation-delay:12s;
+  animation-fill-mode: forwards;
+  margin:2%;
+  font-size : 20px;
+}
+
+#Texte4 {
+  opacity:0;
+  animation-name: example;
+  animation-duration: 8s;
+  animation-delay:18s;
+  animation-fill-mode: forwards;
+  font-size : 20px;
+  margin:2%;
+}
+
+#Titre { 
+	width:40%;
+	height:10%;
+	position:absolute;
+	left:2.5%;
+	top:5%;
+	border:none;
+	outline:none;
+	font-family:Timeless;
+	font-size:40px;
+	text-transform: uppercase;
+	text-align:center;
+	color:rgba(255, 208, 73, 1);
+}
+
+#ContainerTexte { 
+	width:55%;
+	height:100%;
+	position:absolute;
+	right:0%;
+	top:0%;
+	background:rgba(258, 258, 258, 0.5);
+	border:none;
+	outline:none;
+	font-family:Timeless;
+}
+
+#ContainerTexte2 { 
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:20%;
+	border:none;
+	outline:none;
+	text-align:center;
+}
+
+#next {
+	margin-left: auto;
+    margin-right: auto;
+	display:block;
+  padding: 10px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family : Timeless;
+  outline: none;
+  color: rgba(258, 258, 258, 1);
+  background-color: rgba(167, 72, 21, 1);
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0 2px rgba(139, 54, 8, 1);
+}
+
+#next:hover {
+	background-color: rgba(199,155,131, 1);
+ }
+
+#next:active {
+  background-color: rgba(199,155,131, 1);
+  box-shadow: 0 1px rgba(139, 54, 8, 1);
+  transform: translateY(4px);
+}
