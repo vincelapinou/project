@@ -23,20 +23,19 @@ function main() {
 
 // Initialise les objets composant la scène 3D
 function init3DObjects(sceneGraph) {
-
+	
 	const a = 7;
 	const d = 12;
 	const c = 3;
 	const L = Math.sqrt((2*a+d)/2*(2*a+d)/2+c*c);
 	const l = Math.sqrt(((-2*a+d)/2*(-2*a+d)/2+c*c));
-	
-	
-	const A = createCylinder("A",Vector3(-2*a,0,0));
-	const I = createCylinder("I",Vector3(-a,0,0));
-	const O = createCylinder("O",Vector3(0,0,0));
-	const C = createCylinder("C",Vector3(d,0,0));
-	const B = createCylinder("B",Vector3((-2*a+d)/2,c,0));
-	const D = createCylinder("D",Vector3((-2*a+d)/2,-c,0));
+
+	const A = createSphere("A",Vector3(-2*a,0,0));
+	const I = createSphere("I",Vector3(-a,0,0));
+	const O = createSphere("O",Vector3(0,0,0));
+	const C = createSphere("C",Vector3(d,0,0));
+	const B = createSphere("B",Vector3((-2*a+d)/2,c,0));
+	const D = createSphere("D",Vector3((-2*a+d)/2,-c,0));
 	sceneGraph.add(A);
 	sceneGraph.add(O);
 	sceneGraph.add(I);
@@ -44,13 +43,13 @@ function init3DObjects(sceneGraph) {
 	sceneGraph.add(B);
 	sceneGraph.add(D);
 	
-	const AI = createBar(a, "AI");
-	const DA = createBar(L, "DA");
-	const AB = createBar(L, "AB");
-	const BC = createBar(L, "BC");
-	const CD = createBar(L, "CD");
-	const OB = createBar(l, "OB");
-	const OD = createBar(l, "OD");
+	const AI = createLine(a, "AI");
+	const DA = createLine(L, "DA");
+	const AB = createLine(L, "AB");
+	const BC = createLine(L, "BC");
+	const CD = createLine(L, "CD");
+	const OB = createLine(l, "OB");
+	const OD = createLine(l, "OD");
 	sceneGraph.add(AI);
 	sceneGraph.add(DA);
 	sceneGraph.add(AB);
@@ -70,6 +69,7 @@ function init3DObjects(sceneGraph) {
 	
 	
 	//Initialisation du parallélogramme
+	
 	const coorda = coordA(a,0);
 	A.position.set(coorda[0],coorda[1],coorda[2]);
 
@@ -84,7 +84,7 @@ function init3DObjects(sceneGraph) {
 
 	const coordi=[-7,0,0];
 	const coordo=[0,0,0];
-	
+
 	barBetween(coordi,coorda,AI);
 	barBetween(coorda,coordd,DA);
 	barBetween(coorda,coordb,AB);
@@ -93,23 +93,24 @@ function init3DObjects(sceneGraph) {
 	barBetween(coordo,coordb,OB);
 	barBetween(coordo,coordd,OD);
 	
+	
 	//Visualisation des mouvements
 	
-	/*const lineM = new THREE.LineDashedMaterial( { color: 0xc51515,
+	const lineM = new THREE.LineDashedMaterial( { color: 0x0000ff,
 	linewidth: 100,
 	scale: 1,
 	dashSize: 3,
 	gapSize: 10,} );
 	const lineG = new THREE.Geometry();
-	lineG.vertices.push(new THREE.Vector3( 12, -7, 0));
-	lineG.vertices.push(new THREE.Vector3( 12, 7, 0));
-	lineG.vertices.push(new THREE.Vector3( 12, -7, 0));
+	lineG.vertices.push(new THREE.Vector3( 12, -10, 0));
+	lineG.vertices.push(new THREE.Vector3( 12, 10, 0));
+	lineG.vertices.push(new THREE.Vector3( 12, -10, 0));
 	const line = new THREE.Line( lineG, lineM );
 	line.name="line";
 	sceneGraph.add(line); 
 	console.log(line);
 	
-	const arrowG = new THREE.Geometry();
+	/*const arrowG = new THREE.Geometry();
 	arrowG.vertices.push( new THREE.Vector3(15, 2, 0 ) );
 	arrowG.vertices.push( new THREE.Vector3( 15, -2, 0 ) );
 	arrowG.vertices.push( new THREE.Vector3( 14.8, -2, 0 ) );
@@ -124,18 +125,18 @@ function init3DObjects(sceneGraph) {
 	const arrowM = new THREE.LineBasicMaterial( { color: 0xc51515, linewidth: 1 } );
 	const arrow = new THREE.Line( arrowG, arrowM );
 	arrow.name="arrow";
-	sceneGraph.add( arrow );
+	sceneGraph.add( arrow );*/
 	
 	const curve = new THREE.EllipseCurve(-5,0,5,5,3*Math.PI/4,5*Math.PI/4);
 	const points = curve.getSpacedPoints(30);
 	const circleG = new THREE.BufferGeometry().setFromPoints( points );
-	const circleM = new THREE.PointsMaterial( { color : 0xff0000, size : 0.2 } );
+	const circleM = new THREE.PointsMaterial( { color : 0x0000ff, size : 0.2 } );
 	const circle = new THREE.Points( circleG, circleM );
 	circle.name="circle";
 	sceneGraph.add(circle);
 	
 	
-	const arrow2 = createArrow2();
+	/*const arrow2 = createArrow2();
 	arrow2.name="arrow2";
 	sceneGraph.add( arrow2 );*/
 	
@@ -216,4 +217,23 @@ function MaterialRGB(r,g,b) {
     return new THREE.MeshLambertMaterial( {color:c} );
 }
 
+function createSphere(n,position){ // creer une sphere rouge dont les coordonnées seront position
+	const Geometry = new THREE.CylinderGeometry(0.6,0.6,0.01,32);
+	const material = new THREE.MeshLambertMaterial({ color : 0xff0000 });
+	const sphere = new THREE.Mesh(Geometry,material)
+	sphere.position.set(position.x, position.y,position.z);
+	sphere.rotateX(Math.PI/2);
+	sphere.castShadow = true;
+	sphere.name = n;
+	return sphere;
+}
+
+function createLine(l, n){
+	const BGeometry = new THREE.BoxGeometry(0.06,l,0.06);
+	const materialBar = new THREE.MeshLambertMaterial({ color : 0x000000 });
+	const barre = new THREE.Mesh(BGeometry,materialBar);
+	barre.castShadow = true;
+	barre.name = n;
+	return barre;
+}
 
