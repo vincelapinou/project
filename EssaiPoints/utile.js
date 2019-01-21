@@ -1,6 +1,6 @@
 "use strict";
 
-function createCylinder(n,position){ // creer une sphere rouge dont les coordonnées seront position
+function createCylinder(n,position){ // créer un cylindre rouge dont les coordonnées seront le vecteur "position"
 	const CGeometry = new THREE.CylinderGeometry(0.6,0.6,0.8,32);
 	const cylinder = new THREE.Mesh(CGeometry,MaterialRGB(1,0,0) );
 	cylinder.rotateX(Math.PI/2);
