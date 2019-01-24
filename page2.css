@@ -5,22 +5,39 @@ body{
 }
 
 iframe{
-	width:60%;
-	height:60%;
+	width:100%;
+	height:100%;
 	border:none;
 	outline:none;
 }
 
+#divPeaucellier{
+	width:45%;
+	height:60%;
+	border:none;
+	outline:none;
+	position:absolute;
+	left:0%;
+	top:0%;
+}
+
+#divWatt{
+	width:34%;
+	height:60%;
+	border:none;
+	outline:none;
+	position:absolute;
+	right:35%;
+	bottom:0%;
+}
+
+
 #peaucellier{
 	position:absolute;
-	left:5%;
-	top:0%;
 }
 
 #watt{
 	position:absolute;
-	left:5%;
-	bottom:0%;
 }
 
 #Titre { 

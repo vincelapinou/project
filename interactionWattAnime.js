@@ -32,7 +32,7 @@ function onMouseMove(sceneThreeJs) {
 	const x = xPixel - window.innerWidth/2;
 	const y = -yPixel + window.innerHeight/2;
 	
-	const a = 4*2.1;
+	/*const a = 4*2.1;
 	const b = 4*2.2;
 	const c = 4*0.6;
 	
@@ -74,5 +74,5 @@ function onMouseMove(sceneThreeJs) {
 		barBetween(coordb,coordq,BQ);
 		barBetween(coordp,coordq,PQ);
 	}
-		
+		*/
 	}

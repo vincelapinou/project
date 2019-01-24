@@ -57,42 +57,6 @@ function createCurve(a,b,c){
 }
 
 
-function coordM(theta,a,b,c){
-	//const rocarre1 = b*b-a*a-c*c-2*a*Math.sin(theta)*Math.sqrt(c*c-a*a*Math.cos(theta)*Math.cos(theta));
-	//const rocarre2 = b*b-a*a-c*c+2*a*Math.sin(theta)*Math.sqrt(c*c-a*a*Math.cos(theta)*Math.cos(theta));
-	
-	const rocarre1 = b*b- (a*Math.sin(theta) - Math.sqrt(c*c - a*a*Math.cos(theta)*Math.cos(theta)))*(a*Math.sin(theta) - Math.sqrt(c*c - a*a*Math.cos(theta)*Math.cos(theta)))
-	const rocarre2 = b*b- (a*Math.sin(theta) + Math.sqrt(c*c - a*a*Math.cos(theta)*Math.cos(theta)))*(a*Math.sin(theta) + Math.sqrt(c*c - a*a*Math.cos(theta)*Math.cos(theta)))
-
-	
-	let rocarre = 0;
-	if (rocarre1>=0){
-		rocarre=rocarre1;
-	}
-	else if (rocarre2>=0){
-		rocarre=rocarre2;
-	}
-	const ro = Math.sqrt(rocarre);
-	if (theta<Math.PI){
-		return [ro*Math.cos(theta),ro*Math.sin(theta),0];
-		
-	}
-	else{
-		return [-ro*Math.cos(theta),ro*Math.sin(theta),0];
-	}
-}
-
-
-function coordI(L,h,alpha,epsilon){
-	
-	const coorda=coordA(L,h,alpha,epsilon);
-	const coordb=coordB(L,h,alpha,epsilon);
-	
-	const x = (coorda[0]+coordb[0])/2;
-	const y = (coorda[1]+coordb[1])/2;
-	return [x,y,0]
-}
-
 function barBetween(p1,p2,barre){
 	barre.position.set((p1[0]+p2[0])/2,(p1[1]+p2[1])/2,(p1[2]+p2[2])/2);
 	const angle = Math.atan(-(p1[0]-p2[0])/(p1[1]-p2[1]));
@@ -127,7 +91,7 @@ function theta2(theta,a,b,c){
 	const a1 = alpha1(theta,a,b,c);
 	const a2 = alpha2(theta,a,b,c);
 	
-	if (theta <= 0){
+	if (theta < 0){
 		return a1+a2;
 	}
 	else{

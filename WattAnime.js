@@ -112,7 +112,6 @@ function render( sceneThreeJs ) {
 function animate(sceneThreeJs, time) {
 
     const t = time/1000;//time in second
-	/*
 	const a = 4*2.1;
 	const b = 4*2.2;
 	const c = 4*0.6;
@@ -139,7 +138,9 @@ function animate(sceneThreeJs, time) {
 
 	barBetween(coorda,coordp,AP);
 	barBetween(coordb,coordq,BQ);
-	barBetween(coordp,coordq,PQ);*/
+	barBetween(coordp,coordq,PQ);
+	
+	leaveDot(sceneThreeJs.sceneGraph,coordM(theta,a,b,c)[0],coordM(theta,a,b,c)[1],coordM(theta,a,b,c)[2]);
 	
     render(sceneThreeJs);
 }
