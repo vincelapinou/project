@@ -55,14 +55,14 @@ function onMouseMove(sceneThreeJs) {
 	
 	if ((x>window.innerWidth/8 || x<-window.innerWidth/8) && Math.abs(angle)<Math.PI/3){
 		
-		/*if (x>0){
-			arrow.visible=false;
-			arrow2.visible=true;
+		if(x<0){
+			A.material.color.set(0xff0000);
+			C.material.color.set(0xffffff);
 		}
-		else{
-			arrow.visible=true;
-			arrow2.visible=false;
-		}*/
+		if(x>0){
+			C.material.color.set(0xff0000);
+			A.material.color.set(0xffffff);
+		}
 		
 		const coorda = coordA(a,angle);
 		A.position.set(coorda[0],coorda[1],coorda[2]);
@@ -86,6 +86,9 @@ function onMouseMove(sceneThreeJs) {
 		barBetween(coordc,coordd,CD);
 		barBetween(coordo,coordb,OB);
 		barBetween(coordo,coordd,OD);
+		
+		leaveDot(sceneThreeJs.sceneGraph,coorda[0],coorda[1],coorda[2]);
+		leaveDot(sceneThreeJs.sceneGraph,coordc[0],coordc[1],coordc[2]);
 		
 	}
 	

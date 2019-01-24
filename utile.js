@@ -25,6 +25,15 @@ function createBar(l, n){
 	return barre;
 }
 
+function leaveDot(scene,x,y,z){ // creer une sphere rouge dont les coordonnées seront position
+	const Geometry = new THREE.SphereGeometry(0.1,10,10);
+	
+	const material = new THREE.MeshLambertMaterial({ color:0xff0000 });
+	const sphere = new THREE.Mesh(Geometry,material)
+	sphere.position.set(x,y,z);
+	scene.add(sphere);
+}
+
 function createArrow2(){
 	const arrow2G = new THREE.Geometry();
 	
