@@ -110,6 +110,11 @@ const primitive = (function() {
                 n.x,n.y,n.z,
                 n.x,n.y,n.z,
             ]);
+            const uv = new Float32Array([
+                0,0,
+                1,0,
+                1,1
+            ]);
             const geometry = new THREE.BufferGeometry();
             geometry.addAttribute('position',new THREE.BufferAttribute(vertices,3));
             geometry.addAttribute('normal',new THREE.BufferAttribute(normal,3));
@@ -127,7 +132,7 @@ const primitive = (function() {
 
                 p0.x,p0.y,p0.z,
                 p2.x,p2.y,p2.z,
-                p3.x,p3.y,p3.z,
+                p3.x,p3.y,p3.z
             ]);
             const normal = new Float32Array([
                 n1.x,n1.y,n1.z,
@@ -136,12 +141,22 @@ const primitive = (function() {
 
                 n2.x,n2.y,n2.z,
                 n2.x,n2.y,n2.z,
-                n2.x,n2.y,n2.z,
+                n2.x,n2.y,n2.z
+            ]);
+            const uv = new Float32Array([
+                0,0,
+                1,0,
+                1,1,
+
+                0,0,
+                1,1,
+                0,1
             ]);
 
             const geometry = new THREE.BufferGeometry();
             geometry.addAttribute('position',new THREE.BufferAttribute(vertices,3));
             geometry.addAttribute('normal',new THREE.BufferAttribute(normal,3));
+            geometry.addAttribute('uv',new THREE.BufferAttribute(uv,2));
 
             return geometry;
         }
